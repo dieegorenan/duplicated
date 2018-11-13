@@ -3,6 +3,7 @@ package com.dmariano.duplicated.util;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.Random;
 
@@ -15,10 +16,10 @@ public class Utils {
         return array;
     }
 
-    public static File generateTempFileFilled(byte[] array) throws IOException {
+    public static Path generateTempFileFilled(byte[] array) throws IOException {
         File tempFile = File.createTempFile("temp", ".tmp");
         Files.write(tempFile.toPath(), array, StandardOpenOption.APPEND);
 
-        return tempFile;
+        return tempFile.toPath();
     }
 }

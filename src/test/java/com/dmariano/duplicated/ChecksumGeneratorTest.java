@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -18,8 +19,8 @@ public class ChecksumGeneratorTest {
         try {
             byte [] array = Utils.generateRandomBytes(32768);
 
-            File tempFile1 = Utils.generateTempFileFilled(array);
-            File tempFile2 = Utils.generateTempFileFilled(array);
+            Path tempFile1 = Utils.generateTempFileFilled(array);
+            Path tempFile2 = Utils.generateTempFileFilled(array);
 
             ChecksumCalculator generatorFile1 = new ChecksumCalculator(tempFile1);
             ChecksumCalculator generatorFile2 = new ChecksumCalculator(tempFile2);
@@ -28,8 +29,8 @@ public class ChecksumGeneratorTest {
             long checksumFile2 = generatorFile2.getChecksum();
 
             assertEquals(checksumFile1, checksumFile2);
-            assertTrue(tempFile1.delete());
-            assertTrue(tempFile2.delete());
+            assertTrue(tempFile1.toFile().delete());
+            assertTrue(tempFile2.toFile().delete());
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -43,8 +44,8 @@ public class ChecksumGeneratorTest {
             byte [] array1 = Utils.generateRandomBytes(32768);
             byte [] array2 = Utils.generateRandomBytes(65536);
 
-            File tempFile1 = Utils.generateTempFileFilled(array1);
-            File tempFile2 = Utils.generateTempFileFilled(array2);
+            Path tempFile1 = Utils.generateTempFileFilled(array1);
+            Path tempFile2 = Utils.generateTempFileFilled(array2);
 
             ChecksumCalculator generatorFile1 = new ChecksumCalculator(tempFile1);
             ChecksumCalculator generatorFile2 = new ChecksumCalculator(tempFile2);
@@ -53,8 +54,8 @@ public class ChecksumGeneratorTest {
             long checksumFile2 = generatorFile2.getChecksum();
 
             assertNotEquals(checksumFile1, checksumFile2);
-            assertTrue(tempFile1.delete());
-            assertTrue(tempFile2.delete());
+            assertTrue(tempFile1.toFile().delete());
+            assertTrue(tempFile2.toFile().delete());
 
         } catch (IOException e) {
             e.printStackTrace();
