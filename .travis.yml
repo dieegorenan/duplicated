@@ -6,7 +6,7 @@ before_install:
 - chmod +x gradlew
 
 install:
-- ./gradle assemble
+- ./gradlew assemble
 
 script:
-- ./gradle clean test
+- ./gradlew clean test
