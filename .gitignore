@@ -27,5 +27,4 @@ hs_err_pid*
 *.iml
 
 # Tools
-.gradle/
 build/
