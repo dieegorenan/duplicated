@@ -3,21 +3,18 @@ package com.dmariano.duplicated;
 import com.dmariano.duplicated.util.Utils;
 import org.junit.Test;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
-public class ChecksumGeneratorTest {
+public class ChecksumCalculatorTest {
 
     @Test
     public void testWithSameFiles() {
 
         try {
-            byte [] array = Utils.generateRandomBytes(32768);
+            byte[] array = Utils.generateRandomBytes(32768);
 
             Path tempFile1 = Utils.generateTempFileFilled(array);
             Path tempFile2 = Utils.generateTempFileFilled(array);
@@ -41,11 +38,9 @@ public class ChecksumGeneratorTest {
     public void testWithDifferentFiles() {
 
         try {
-            byte [] array1 = Utils.generateRandomBytes(32768);
-            byte [] array2 = Utils.generateRandomBytes(65536);
 
-            Path tempFile1 = Utils.generateTempFileFilled(array1);
-            Path tempFile2 = Utils.generateTempFileFilled(array2);
+            Path tempFile1 = Utils.generateTempFileFilled(Utils.generateRandomBytes(32768));
+            Path tempFile2 = Utils.generateTempFileFilled(Utils.generateRandomBytes(65536));
 
             ChecksumCalculator generatorFile1 = new ChecksumCalculator(tempFile1);
             ChecksumCalculator generatorFile2 = new ChecksumCalculator(tempFile2);

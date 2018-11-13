@@ -1,14 +1,10 @@
 package com.dmariano.duplicated;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.stream.Collectors;
 
-public class PathBlockingQueueProcessor implements Runnable{
+public class PathBlockingQueueProcessor implements Runnable {
 
     private final BlockingQueue<ChecksumCalculator> pathBlockingQueue;
     private final Map<Long, Path> unique;
